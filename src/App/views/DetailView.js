@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const query = gql`
-query FindBook($id: Int!){
+query FindBook($id: String!){
   findbook(id: $id){
     id
     title

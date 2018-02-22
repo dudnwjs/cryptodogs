@@ -23,19 +23,19 @@ const port = process.env.PORT || 5000
 // db_books.forEach(item=>{
 //   console.log(item);
 // })
-const Book = mongoose.model('book', { id: { type: Number, trim: true, unique: true }, title: String, author: String })
+const Book = mongoose.model('book', { id: String, title: String, author: String })
 const typeDefs = `
   type Query{
     books: [Book]
-    findbook(id:Int!): Book
+    findbook(id:String!): Book
   }
   type Book {
-    id: Int!
+    id: ID
     title: String
     author: String
   }
   type Mutation{
-    addBook(id:Int!,title:String,author:String): Book
+    addBook(title:String,author:String): Book
   }
 `
 
@@ -47,8 +47,10 @@ const resolvers = {
   },
   Mutation: {
     addBook: async (obj, args, ctx) => {
-      console.log(args)
-      return new ctx.book(args).save()
+      const one = await new ctx.book(args)
+      one.id = one._id
+      console.log(one)
+      return one.save()
     }
   }
 }
