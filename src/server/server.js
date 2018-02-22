@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { makeExecutableSchema } from 'graphql-tools'
 import mongoose from 'mongoose'
+import cors from 'cors'
 
 mongoose.connect('mongodb://test:test@ds123658.mlab.com:23658/dudnwjsdb')
   .then(() => {
@@ -22,18 +23,19 @@ const port = process.env.PORT || 5000
 // db_books.forEach(item=>{
 //   console.log(item);
 // })
-const Book = mongoose.model('book', { title: String, author: String })
+const Book = mongoose.model('book', { id: { type: Number, trim: true, unique: true }, title: String, author: String })
 const typeDefs = `
   type Query{
     books: [Book]
-    findbook(name:String): [Book]
+    findbook(id:Int!): Book
   }
   type Book {
+    id: Int!
     title: String
     author: String
   }
   type Mutation{
-    addBook(title:String,author:String): Book
+    addBook(id:Int!,title:String,author:String): Book
   }
 `
 
@@ -41,7 +43,7 @@ const typeDefs = `
 const resolvers = {
   Query: {
     books: async (obj, args, ctx) => ctx.book.find(),
-    findbook: async (obj, args, ctx) => ctx.book.find({ author: args.name })
+    findbook: async (obj, args, ctx) => ctx.book.findOne({ id: args.id })
   },
   Mutation: {
     addBook: async (obj, args, ctx) => {
@@ -58,12 +60,12 @@ const schema = makeExecutableSchema({
 
 const app = express()
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { book: Book } }))
+app.use('/graphql', cors(), bodyParser.json(), graphqlExpress({ schema, context: { book: Book } }))
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
 app.get('/api/hello', (req, res) => {
-  res.send({ express: 'dsffsdf from Express' })
+  res.send({ express: 'test from Express' })
 })
 
 app.listen(port, () => {

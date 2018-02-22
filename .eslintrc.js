@@ -21,5 +21,6 @@ module.exports = {
         "new-cap": 0,
         "max-len": ["error", { "code": 150 }],
         "no-unused-vars": 0,
+        "class-methods-use-this": 0
     }
 }
