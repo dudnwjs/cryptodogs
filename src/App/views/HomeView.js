@@ -1,35 +1,31 @@
 import React from 'react'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
 
-const query = gql`{
-  books {
-    id
-    title
-    author
-  }
-}`
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 class HomeView extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoggedIn: false
+    }
+  }
+
   render() {
-    const { data } = this.props
-    if (data.loading) { return <div>Loading...</div> }
-    if (!data.books) { return <div>Loading...</div> }
+    setInterval(() => this.setState({
+      isLoggedIn: true
+    }), 3000)
     return (
       <div>
+        <Header isLoggedIn={this.state.isLoggedIn}/>
         <ul>
-          {data.books.map((item, index) => (
-            <li key={item.id}>
-              <Link to={`/info/${item.id}`}>
-                {item.title}-{item.author}
-              </Link>
-            </li>
-          ))}
+          <li> BODY </li>
         </ul>
+        <Footer/>
       </div>
     )
   }
 }
 
-export default graphql(query)(HomeView)
+export default HomeView

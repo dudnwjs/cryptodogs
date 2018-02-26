@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Redirect } from 'react-router-dom'
-import { Button, Icon, Card, Input } from 'react-materialize'
+import { Button, Input } from 'react-materialize'
 
 const query = gql`
 mutation AddBook($title: String!, $author: String!) {
