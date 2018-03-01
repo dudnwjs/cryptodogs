@@ -23,7 +23,7 @@ export default class Header extends React.Component {
     return (
       <nav>
         <div className="nav-wrapper white">
-          <div className="brand-logo"> <Link to="/info/create"><img height="60" src={logo} alt={"logo"}/></Link></div>
+          <div className="brand-logo"> <Link to="/"><img height="60" src={logo} alt={'logo'}/></Link></div>
           <ul className="right hide-on-med-and-down">
             { this.props.isLoggedIn ? myInfoLink : null }
             { this.props.isLoggedIn ? logoutLink : loginLink }

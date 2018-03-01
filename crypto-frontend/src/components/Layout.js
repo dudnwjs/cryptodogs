@@ -7,7 +7,7 @@ class Layout extends React.Component {
     return (
       <div>
         <Header isLoggedIn={this.props.isLoggedIn}/>
-         {this.props.children}
+        {this.props.children}
         <Footer/>
       </div>
     )

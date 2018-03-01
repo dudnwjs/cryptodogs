@@ -1,9 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-
-import HomeView from './views/HomeView'
-import CreateView from './views/CreateView'
-import DetailView from './views/DetailView'
+import HomeView from '../views/HomeView'
+import CreateView from '../views/CreateView'
+import DetailView from '../views/DetailView'
 
 class App extends React.Component {
   render() {
