@@ -3,6 +3,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Redirect } from 'react-router-dom'
 import { Button, Input } from 'react-materialize'
+import Layout from '../components/Layout'
 
 const query = gql`
 mutation AddBook($title: String!, $author: String!) {
@@ -46,7 +47,7 @@ class CreateView extends React.Component {
       return <Redirect to='/'/>
     }
     return (
-      <div>
+      <Layout>
         <h1>CreateView</h1>
         <form onSubmit={this.handleSubmit}>
           <Input s={6} label="Book Title" onChange={this.handleTitle}/>
@@ -55,7 +56,7 @@ class CreateView extends React.Component {
               Create
           </Button>
         </form>
-      </div>
+      </Layout>
     )
   }
 }
