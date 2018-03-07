@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import logo from '../images/logo.png'
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class Header extends React.Component {
     return (
       <nav>
         <div className="nav-wrapper white">
-          <div className="brand-logo"> <Link to="/info/create"><img height="60" src="images/logo.png" alt="HeJA"/></Link></div>
+          <div className="brand-logo"> <Link to="/info/create"><img height="60" src={logo} alt="HeJA"/></Link></div>
           <ul className="right hide-on-med-and-down">
             { this.props.isLoggedIn ? myInfoLink : null }
             { this.props.isLoggedIn ? logoutLink : loginLink }

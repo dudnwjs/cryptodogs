@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import Layout from '../components/Layout'
 
 const query = gql`
 query FindBook($id: String!){
@@ -19,13 +20,13 @@ class DetailView extends React.Component {
     if (!data.findbook) { return <div>Loading...</div> }
     console.log(this.props)
     return (
-      <div>
+      <Layout>
         <ul>
           <li>ID : {data.findbook.id}</li>
           <li>TITLE : {data.findbook.title}</li>
           <li>AUTHOR : {data.findbook.author}</li>
         </ul>
-      </div>
+      </Layout>
     )
   }
 }

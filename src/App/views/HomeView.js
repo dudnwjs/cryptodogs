@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Layout from '../components/Layout'
 
 class HomeView extends React.Component {
   constructor(props) {
@@ -17,13 +16,11 @@ class HomeView extends React.Component {
       isLoggedIn: true
     }), 3000)
     return (
-      <div>
-        <Header isLoggedIn={this.state.isLoggedIn}/>
+      <Layout isLoggedIn={this.state.isLoggedIn}>
         <ul>
           <li> BODY </li>
         </ul>
-        <Footer/>
-      </div>
+      </Layout>
     )
   }
 }
